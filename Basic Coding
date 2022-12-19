@@ -1,1 +1,17 @@
 
+-- Create, Dropping, and Using Database
+CREATE DATABASE michael_haller;
+DROP DATABASE <database-name>;
+USE <database-name>;
+
+-- Creating and Dropping Tables
+CREATE TABLE haller (
+    name VARCHAR(50),
+    age INT);
+DROP TABLE haller;
+
+-- Inserting Data Into a Table;
+INSERT INTO haller (name, age) 
+VALUES ('Mike', 25);
+
+
