@@ -253,9 +253,67 @@ CREATE TABLE users2 (
     age INT,
     CONSTRAINT age_not_negative CHECK (age >= 0)); 
 
--- ALTER: Adding columns in a table
+-- ALTER: Adding, Dropping, Renaming, or Modifying columns in a table
 ALTER TABLE companies
 ADD COLUMN employee_count INT NOT NULL DEFAULT 1;
+ALTER TABLE companies DROP COLUMN phone;
+RENAME TABLE companies to suppliers;
+ALTER TABLE suppliers RENAME TO companies;
+ALTER TABLE companies
+RENAME COLUMN name TO company_name;
+ALTER TABLE companies
+MODIFY company_name VARCHAR(100) DEFAULT 'unknown';
+ALTER TABLE suppliers
+CHANGE business biz_name VARCHAR(50);
+ALTER TABLE houses 
+ADD CONSTRAINT positive_pprice CHECK (purchase_price >= 0);
+ALTER TABLE houses DROP CONSTRAINT positive_pprice
+
+
+
+
+
+-- SECTION 9
+
+-- Cross Joins combines all data multiple times (think of cross multiplying
+SELECT id FROM customers WHERE last_name = 'George';
+SELECT * FROM orders WHERE customer_id = 1; 
+SELECT * FROM orders 
+WHERE customer_id = (SELECT id FROM customers WHERE last_name = 'George');
+-- To perform a (kind of useless) cross join:
+SELECT * FROM customers, orders;
+
+-- Inner Join: joins data found in both tables where condition is met
+SELECT * FROM customers
+JOIN orders ON orders.customer_id = customers.id;
+SELECT first_name, last_name, order_date, amount FROM customers
+JOIN orders ON orders.customer_id = customers.id;
+-- The order doesn't matter here:
+SELECT * FROM orders
+JOIN customers ON customers.id = orders.customer_id;
+
+-- Left Join: Inner join except including table A's data that wasn't met
+SELECT 
+    first_name, last_name, order_date, amount
+FROM
+    customers
+        LEFT JOIN
+    orders ON orders.customer_id = customers.id;
+ 
+SELECT 
+    order_date, amount, first_name, last_name
+FROM
+    orders
+        LEFT JOIN
+    customers ON orders.customer_id = customers.id;
+    
+-- Right Join: Vice Versa of Left
+SELECT 
+    first_name, last_name, order_date, amount
+FROM
+    customers
+        RIGHT JOIN
+    orders ON customers.id = orders.customer_id;
 --
 --
 --
