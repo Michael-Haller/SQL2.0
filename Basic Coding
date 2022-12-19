@@ -113,6 +113,45 @@ SELECT TRIM('  pickle  ');
 
 -- SECTION 4
 
+-- DISTICT: Returns a list of names without duplicates
+SELECT DISTINCT CONCAT(author_fname,' ', author_lname) FROM books;
+SELECT DISTINCT author_fname, author_lname FROM books;
+
+-- ORDER BY: Sorts your results
+SELECT * FROM books
+ORDER BY released_year;
+-- ORDER BY the second Column
+SELECT book_id, author_fname, author_lname, pages
+FROM books ORDER BY 2 desc;
+--  ORDER BY last name first and then order by first name
+SELECT book_id, author_fname, author_lname, pages
+FROM books ORDER BY author_lname, author_fname;
+
+-- LIMIT: Shows how many results you want. Examples below produces 14 values and the seocnd produces results from the 0 value to 5 value
+SELECT title, released_year FROM books 
+ORDER BY released_year DESC LIMIT 14;
+SELECT title, released_year FROM books 
+ORDER BY released_year DESC LIMIT 0,5;
+
+-- LIKE: Better searching
+-- % = wildcards 
+SELECT title, author_fname, author_lname, pages 
+FROM books
+WHERE author_fname LIKE '%da%';
+-- To select books with '%' in their title:
+SELECT * FROM books
+WHERE title LIKE '%\%%';
+-- To select books with an underscore '_' in title:
+SELECT * FROM books
+WHERE title LIKE '%\_%';
+
+
+
+
+
+-- SECTION 5
+
+
 --
 --
 --
