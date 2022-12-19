@@ -238,6 +238,24 @@ FROM
 
 -- SECTION 8
 
+-- UNIQUE: Values in the column must be different
+CREATE TABLE contacts (
+	name VARCHAR(100) NOT NULL,
+    phone VARCHAR(15) NOT NULL UNIQUE);
+
+-- CHECK: Sayswhat be met for an item to be added
+CREATE TABLE users (
+	username VARCHAR(20) NOT NULL,
+    age INT CHECK (age > 0));
+-- CONSTRAINT: is a way to name the Check    
+CREATE TABLE users2 (
+    username VARCHAR(20) NOT NULL,
+    age INT,
+    CONSTRAINT age_not_negative CHECK (age >= 0)); 
+
+-- ALTER: Adding columns in a table
+ALTER TABLE companies
+ADD COLUMN employee_count INT NOT NULL DEFAULT 1;
 --
 --
 --
