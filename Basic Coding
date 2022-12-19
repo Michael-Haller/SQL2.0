@@ -151,6 +151,92 @@ WHERE title LIKE '%\_%';
 
 -- SECTION 5
 
+-- COUNT: Counts numbers of each
+SELECT COUNT(*) FROM books;
+SELECT COUNT(DISTINCT author_lname) FROM books;
+
+-- GORUP BY: Summarizes or Aggregates identical data into single rows
+SELECT author_lname, COUNT(*) 
+FROM books
+GROUP BY author_lname;
+
+-- MAX MIN - Highest/Lowest values in the columns
+SELECT MAX(pages) FROM books;
+SELECT MIN(author_lname) FROM books;
+
+-- Subqueries: Query in a Query = does the inside query first
+SELECT title, pages FROM books
+WHERE pages = (SELECT MAX(pages) FROM books);
+
+-- SUM and AVG: Self Explanitory 
+SELECT author_lname, COUNT(*), SUM(pages)
+FROM books
+GROUP BY author_lname;
+SELECT 
+    released_year, 
+    AVG(stock_quantity), 
+    COUNT(*) FROM books
+GROUP BY released_year;
+
+
+
+
+-- SECTION 7
+
+-- Not Equal: symbols are !=
+SELECT * FROM books
+WHERE released_year != 2017;
+
+-- Not Like: What you don't want
+SELECT * FROM books
+WHERE title NOT LIKE '%e%';
+
+-- Less Than or Equal too: Symbols are <=
+SELECT * FROM books
+WHERE released_year <= 1985;
+
+-- AND: Where other conditions must be met
+SELECT title, author_lname, released_year FROM books
+WHERE released_year > 2010
+AND author_lname = 'Eggers'
+AND title LIKE '%novel%';
+
+-- OR: Where only one condition needs to be met
+SELECT title, author_lname, released_year FROM books
+WHERE author_lname='Eggers' OR
+released_year > 2010;
+
+-- BETWEEN: Must be in the middle of two values
+SELECT title, released_year FROM books
+WHERE released_year BETWEEN 2004 AND 2014;
+
+-- IN: looks at items IN a subset
+SELECT title, author_lname FROM books
+WHERE author_lname IN ('Carver', 'Lahiri', 'Smith');
+-- %: Modulo: Shows remainder when doing division
+SELECT title, released_year FROM books
+WHERE released_year >= 2000 
+AND released_year % 2 = 1;
+
+-- CASE: To make outcomes based on values
+SELECT 
+    title,
+    stock_quantity,
+    CASE
+        WHEN stock_quantity BETWEEN 0 AND 40 THEN '*'
+        WHEN stock_quantity BETWEEN 41 AND 70 THEN '**'
+        WHEN stock_quantity BETWEEN 71 AND 100 THEN '***'
+        WHEN stock_quantity BETWEEN 101 AND 140 THEN '****'
+        ELSE '*****'
+    END AS stock
+FROM
+    books;
+
+
+
+
+
+-- SECTION 8
 
 --
 --
