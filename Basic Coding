@@ -1,4 +1,6 @@
 
+-- SECTION 1 
+
 -- Create, Dropping, and Using Database
 CREATE DATABASE michael_haller;
 DROP DATABASE <database-name>;
@@ -12,6 +14,56 @@ DROP TABLE haller;
 
 -- Inserting Data Into a Table;
 INSERT INTO haller (name, age) 
-VALUES ('Mike', 25);
+VALUES 
+  ('Mike', 25),
+  ('Jen', 26), 
+  ('Amanda', 27);
+  
+-- SELECT Statements: * = All Columns
+Select * From haller
+  
+-- Not Null: Doesn't Mean Zero but means you can't enter a value Null
+CREATE TABLE haller2 (
+    name VARCHAR(100) NOT NULL,
+    age INT NOT NULL);
+
+-- Default: If information is not there, make a deafult value
+CREATE TABLE haller3  (    
+    name VARCHAR(20) NOT NULL DEFAULT 'unnamed',    
+    age INT NOT NULL DEFAULT 99);
+    
+-- Primary Key: Make a Unique Identifer For Each Row
+CREATE TABLE unique_haller (
+	haller_id INT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    age INT NOT NULL);
+    
+-- Auto Increment: Auto Generates Next ID when inserting data
+CREATE TABLE unique_cats3 (
+    cat_id INT AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL,
+    age INT NOT NULL,
+    PRIMARY KEY (cat_id));
+    
+    
+    
+    
+    
+-- SECTION 2
+
+
+
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
 
 
