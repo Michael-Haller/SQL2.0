@@ -1,3 +1,6 @@
+-- Site to Format Your Code 
+https://codebeautify.org/sqlformatter
+
 
 -- SECTION 1 
 
@@ -18,9 +21,6 @@ VALUES
   ('Mike', 25),
   ('Jen', 26), 
   ('Amanda', 27);
-  
--- SELECT Statements: * = All Columns
-Select * From haller
   
 -- Not Null: Doesn't Mean Zero but means you can't enter a value Null
 CREATE TABLE haller2 (
@@ -51,9 +51,68 @@ CREATE TABLE unique_cats3 (
     
 -- SECTION 2
 
+-- SELECT Statements: * = All Columns. Entering Columns You Need Also Works
+SELECT * FROM haller;
+SELECT name, age FROM haller;
+
+-- WHERE: Specify a Condition
+SELECT * FROM haller WHERE name ='Mike';
+
+-- Alias = AS: give a column you pulled a name in your results (it doesn't actually change the name of the column in the table)
+SELECT haller_id AS id, name FROM haller;
+
+-- UPDATE: Can modify in your dataset and shcnage values
+UPDATE cats SET breed='Shorthair' WHERE breed='Tabby';
 
 
---
+
+
+-- SECTION 3
+
+-- CONCAT: Combine two or more items togethers. 
+-- CONCAT_WS: Adds a separator between what you combine
+SELECT CONCAT(author_fname,' ', author_lname) AS author_name FROM books
+SELECT CONCAT_WS('-',title, author_fname, author_lname) FROM books;
+
+-- SUBSTR = SUBSTRING: Pulls an amount of text out of a string
+SELECT SUBSTRING(title, 1, 10) AS 'short title' FROM books;
+SELECT SUBSTR(title, 1, 10) AS 'short title' FROM books;
+-- This pulls the starting pint you want and goes to the end
+SELECT SUBSTRING('Hello World', 7);
+
+-- REPLACE: Replace parts of string
+SELECT REPLACE('Hello World', 'o', '0');
+
+-- REVERSE : Reverses the text
+SELECT CONCAT(author_fname, REVERSE(author_fname)) FROM books;
+
+-- CHAR_LENGTH = number of string length
+SELECT CONCAT(author_lname, ' is ', CHAR_LENGTH(author_lname), ' characters long') FROM books;
+
+-- UPPER and LOWER: Uppercase/Lowercase a str
+SELECT UPPER('Hello World');
+SELECT LOWER('Hello World');
+
+-- INSERT base on spot = Example is based on the space between Hello and Bobby
+SELECT INSERT('Hello Bobby', 6, 0, 'There'); 
+
+-- LEFT: Brings left most values
+SELECT LEFT('omghahalol!', 3);
+
+-- RIGHT: Brings Right most values
+SELECT RIGHT('omghahalol!', 4);
+ 
+-- REPEAT: Repeats str many times
+SELECT REPEAT('ha', 4);
+ 
+-- TRIM: Removes blank space before or after a word
+SELECT TRIM('  pickle  ');
+
+
+
+
+-- SECTION 4
+
 --
 --
 --
