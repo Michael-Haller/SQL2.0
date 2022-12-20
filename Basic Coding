@@ -314,6 +314,20 @@ FROM
     customers
         RIGHT JOIN
     orders ON customers.id = orders.customer_id;
+
+
+
+
+
+-- SECTION 10
+
+- HAVING: Specifies conditions on groups
+SELECT 
+    title, 
+    AVG(rating),
+    COUNT(rating) AS review_count
+FROM full_reviews 
+GROUP BY title HAVING COUNT(rating) > 1;
 --
 --
 --
