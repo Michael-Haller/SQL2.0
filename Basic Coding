@@ -275,6 +275,16 @@ ALTER TABLE houses DROP CONSTRAINT positive_pprice
 
 -- SECTION 9
 
+
+-- Foreign Key - Helps you reference a column from one dtabase to another column in a different database
+CREATE TABLE orders (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    order_date DATE,
+    amount DECIMAL(8,2),
+    customer_id INT,
+    FOREIGN KEY (customer_id) REFERENCES customers(id)
+);
+
 -- Cross Joins combines all data multiple times (think of cross multiplying
 SELECT id FROM customers WHERE last_name = 'George';
 SELECT * FROM orders WHERE customer_id = 1; 
